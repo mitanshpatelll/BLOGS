@@ -1,0 +1,758 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>document.documentElement.classList.add('js');</script>
+
+  <title>Are You a JS Pro? Try This: JavaScript Types &amp; Coercion Quiz</title>
+  <meta name="description" content="10 JavaScript output puzzles on typeof, ==, NaN, -0, the + operator and deep copy, then the exact spec rules behind every answer. Interview-ready.">
+  <meta name="author" content="Mitansh">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <!-- Once hosted, add: <link rel="canonical" href="https://YOUR-DOMAIN/are-you-a-js-pro/"> and <meta property="og:url" content="https://YOUR-DOMAIN/are-you-a-js-pro/"> -->
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Are You a JS Pro? Try This">
+  <meta property="og:description" content="10 JavaScript output puzzles on types and coercion, plus the rules that explain every answer.">
+  <meta property="article:published_time" content="2026-10-08">
+  <meta property="article:section" content="JavaScript">
+  <meta property="article:tag" content="JavaScript">
+  <meta property="article:tag" content="Type Coercion">
+  <meta property="article:tag" content="Interview Prep">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Are You a JS Pro? Try This">
+  <meta name="twitter:description" content="10 JavaScript output puzzles on types and coercion, plus the rules that explain every answer.">
+
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f8f8f8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#101010" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23F7DF1E'/%3E%3Ctext x='29' y='28' font-family='Arial,sans-serif' font-size='14' font-weight='700' text-anchor='end' fill='%231C1B19'%3EJS%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300..700;1,400&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400..600;1,400..600&display=swap">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/post.js" defer></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Are You a JS Pro? Try This: JavaScript Types & Coercion Quiz",
+    "description": "10 JavaScript output puzzles on typeof, ==, NaN, -0, the + operator and deep copy, then the exact spec rules behind every answer.",
+    "datePublished": "2026-10-08",
+    "dateModified": "2026-10-08",
+    "author": { "@type": "Person", "name": "Mitansh" },
+    "inLanguage": "en",
+    "articleSection": "JavaScript",
+    "keywords": ["JavaScript", "type coercion", "typeof", "== vs ===", "Object.is", "NaN", "BigInt", "structuredClone", "JavaScript interview questions"]
+  }
+  </script>
+</head>
+<body>
+  <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
+    <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 5v14M19 12l-7 7-7-7"/></symbol>
+    <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M5 12l7-7 7 7M12 19V5"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+    <symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+    <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.59 13.51 6.83 3.98M15.41 6.51l-6.82 3.98"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4M12 17h.01"/></symbol>
+    <symbol id="i-message" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="shell">
+    <header class="site-header">
+      <div class="site-header__inner">
+        <nav class="site-nav" aria-label="Primary">
+          <a class="site-nav__brand" href="../"><span class="brand__mark" aria-hidden="true">JS</span>Deep Dives</a>
+          <a href="../">Blog</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="main">
+      <article class="post">
+        <header class="post-header" id="top">
+          <a class="post-back" href="../"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left"/></svg>All writing</a>
+
+          <a class="cover" href="#challenge" aria-label="Start the 10-question challenge">
+            <span class="cover__inner" aria-hidden="true">
+              <span class="cover__top">
+                <span class="cover__label">Predict the output</span>
+                <span class="cover__badge">JS</span>
+              </span>
+              <span class="cover__code"><span class="k">typeof</span> <span class="n">null</span>              <span class="c">// ?</span>
+[] == ![]                <span class="c">// ?</span>
+<span class="n">0.1</span> + <span class="n">0.2</span> === <span class="n">0.3</span>        <span class="c">// ?</span>
+<span class="s">"b"</span> + <span class="s">"a"</span> + +<span class="s">"a"</span> + <span class="s">"a"</span>   <span class="c">// ?</span><span class="cover__cursor"></span></span>
+              <span class="cover__foot">
+                <span>10 questions · 5 minutes</span>
+                <span class="cover__cta">Start the challenge <svg class="icon"><use href="#i-arrow-down"/></svg></span>
+              </span>
+            </span>
+          </a>
+
+          <h1>Are You a JS Pro? Try&nbsp;This.</h1>
+          <p class="deck">Ten tiny snippets. Each one looks obvious. Most developers miss at least three. Predict the output, grade yourself honestly, then learn the exact rules the engine follows, so you never have to guess again.</p>
+
+          <div class="post-meta">
+            <p class="meta">
+              <span>Mitansh</span><span aria-hidden="true">·</span>
+              <time datetime="2026-10-08">October 8, 2026</time><span aria-hidden="true">·</span>
+              <span>18 min read</span>
+            </p>
+            <button class="btn share" type="button" data-share><svg class="icon" aria-hidden="true"><use href="#i-share"/></svg><span data-share-label>Share</span></button>
+          </div>
+        </header>
+
+        <details class="toc">
+          <summary><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg>In this article</summary>
+          <ol>
+                <li><a href="#challenge">The challenge</a></li>
+                <li><a href="#types">The 8 types &amp; typeof</a></li>
+                <li><a href="#references">Primitives vs references</a></li>
+                <li><a href="#numbers">Number internals</a></li>
+                <li><a href="#abstract-ops">Abstract operations</a></li>
+                <li><a href="#falsy">The 8 falsy values</a></li>
+                <li><a href="#equality">Equality, all four kinds</a></li>
+                <li><a href="#plus">The + operator</a></li>
+                <li><a href="#copy">Shallow vs deep copy</a></li>
+                <li><a href="#cheatsheet">Interview cheat sheet</a></li>
+                <li><a href="#practice">Practice</a></li>
+              </ol>
+        </details>
+
+        <div class="prose">
+
+        <!-- ================= CHALLENGE ================= -->
+        <section id="challenge" aria-labelledby="challenge-title">
+          <h2 id="challenge-title"><span class="sec-num">The challenge</span>Predict the output</h2>
+          <p>Don't run anything. Read each snippet, commit to an answer in your head, then reveal it. Grade yourself honestly. Nobody is watching.</p>
+
+          <ol class="quiz">
+            <li class="q reveal">
+              <div class="q__head"><span class="q__num">01</span><p class="q__prompt">What does this return?</p><span class="q__status" aria-hidden="true"></span></div>
+              <pre><code class="language-js">typeof null</code></pre>
+              <button class="btn btn--ghost btn--sm q__toggle" type="button" aria-expanded="false" aria-controls="a1"><span class="q__toggle-label">Show answer</span><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></button>
+              <div class="q__answer" id="a1"><div class="q__answer-inner"><div class="q__answer-body">
+                <p class="q__result"><span class="q__result-label">Answer</span><code>"object"</code></p>
+                <p class="q__why">A bug from JavaScript's very first engine that can never be fixed without breaking the web. Check for null with <code>value === null</code>. <a href="#types">Read the rule</a></p>
+                <div class="q__grade" role="group" aria-label="Did you get question 1 right?"><span class="q__grade-label">Did you get it?</span><button class="chip chip--yes" type="button" data-grade="yes" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Got it</button><button class="chip chip--no" type="button" data-grade="no" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg>Missed it</button></div>
+              </div></div></div>
+            </li>
+
+            <li class="q reveal">
+              <div class="q__head"><span class="q__num">02</span><p class="q__prompt">True or false?</p><span class="q__status" aria-hidden="true"></span></div>
+              <pre><code class="language-js">0.1 + 0.2 === 0.3</code></pre>
+              <button class="btn btn--ghost btn--sm q__toggle" type="button" aria-expanded="false" aria-controls="a2"><span class="q__toggle-label">Show answer</span><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></button>
+              <div class="q__answer" id="a2"><div class="q__answer-inner"><div class="q__answer-body">
+                <p class="q__result"><span class="q__result-label">Answer</span><code>false</code></p>
+                <p class="q__why">The sum is <code>0.30000000000000004</code>. Neither 0.1 nor 0.2 can be stored exactly in binary floating point. <a href="#numbers">Read the rule</a></p>
+                <div class="q__grade" role="group" aria-label="Did you get question 2 right?"><span class="q__grade-label">Did you get it?</span><button class="chip chip--yes" type="button" data-grade="yes" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Got it</button><button class="chip chip--no" type="button" data-grade="no" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg>Missed it</button></div>
+              </div></div></div>
+            </li>
+
+            <li class="q reveal">
+              <div class="q__head"><span class="q__num">03</span><p class="q__prompt">What does this return?</p><span class="q__status" aria-hidden="true"></span></div>
+              <pre><code class="language-js">[] == ![]</code></pre>
+              <button class="btn btn--ghost btn--sm q__toggle" type="button" aria-expanded="false" aria-controls="a3"><span class="q__toggle-label">Show answer</span><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></button>
+              <div class="q__answer" id="a3"><div class="q__answer-inner"><div class="q__answer-body">
+                <p class="q__result"><span class="q__result-label">Answer</span><code>true</code></p>
+                <p class="q__why"><code>![]</code> is <code>false</code>, which becomes <code>0</code>. The array becomes <code>""</code>, then <code>0</code>. So it ends as <code>0 == 0</code>. <a href="#loose-equality">Read the rule</a></p>
+                <div class="q__grade" role="group" aria-label="Did you get question 3 right?"><span class="q__grade-label">Did you get it?</span><button class="chip chip--yes" type="button" data-grade="yes" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Got it</button><button class="chip chip--no" type="button" data-grade="no" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg>Missed it</button></div>
+              </div></div></div>
+            </li>
+
+            <li class="q reveal">
+              <div class="q__head"><span class="q__num">04</span><p class="q__prompt">What does this return?</p><span class="q__status" aria-hidden="true"></span></div>
+              <pre><code class="language-js">"1" + 1 - 1</code></pre>
+              <button class="btn btn--ghost btn--sm q__toggle" type="button" aria-expanded="false" aria-controls="a4"><span class="q__toggle-label">Show answer</span><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></button>
+              <div class="q__answer" id="a4"><div class="q__answer-inner"><div class="q__answer-body">
+                <p class="q__result"><span class="q__result-label">Answer</span><code>10</code></p>
+                <p class="q__why"><code>"1" + 1</code> concatenates to <code>"11"</code>. Then <code>-</code> only does maths, so <code>"11" - 1</code> is <code>10</code>. <a href="#plus">Read the rule</a></p>
+                <div class="q__grade" role="group" aria-label="Did you get question 4 right?"><span class="q__grade-label">Did you get it?</span><button class="chip chip--yes" type="button" data-grade="yes" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Got it</button><button class="chip chip--no" type="button" data-grade="no" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg>Missed it</button></div>
+              </div></div></div>
+            </li>
+
+            <li class="q reveal">
+              <div class="q__head"><span class="q__num">05</span><p class="q__prompt">What does this return?</p><span class="q__status" aria-hidden="true"></span></div>
+              <pre><code class="language-js">["1", "2", "3"].map(parseInt)</code></pre>
+              <button class="btn btn--ghost btn--sm q__toggle" type="button" aria-expanded="false" aria-controls="a5"><span class="q__toggle-label">Show answer</span><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></button>
+              <div class="q__answer" id="a5"><div class="q__answer-inner"><div class="q__answer-body">
+                <p class="q__result"><span class="q__result-label">Answer</span><code>[1, NaN, NaN]</code></p>
+                <p class="q__why"><code>map</code> passes <code>(value, index)</code>, so the index becomes the radix. <code>parseInt("2", 1)</code> and <code>parseInt("3", 2)</code> are both invalid. <a href="#parseint">Read the rule</a></p>
+                <div class="q__grade" role="group" aria-label="Did you get question 5 right?"><span class="q__grade-label">Did you get it?</span><button class="chip chip--yes" type="button" data-grade="yes" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Got it</button><button class="chip chip--no" type="button" data-grade="no" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg>Missed it</button></div>
+              </div></div></div>
+            </li>
+
+            <li class="q reveal">
+              <div class="q__head"><span class="q__num">06</span><p class="q__prompt">What do these two lines return?</p><span class="q__status" aria-hidden="true"></span></div>
+              <pre><code class="language-js">null >= 0
+null == 0</code></pre>
+              <button class="btn btn--ghost btn--sm q__toggle" type="button" aria-expanded="false" aria-controls="a6"><span class="q__toggle-label">Show answer</span><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></button>
+              <div class="q__answer" id="a6"><div class="q__answer-inner"><div class="q__answer-body">
+                <p class="q__result"><span class="q__result-label">Answer</span><code>true</code> then <code>false</code></p>
+                <p class="q__why">Relational operators convert <code>null</code> to <code>0</code>. But <code>==</code> has a special rule: <code>null</code> only loosely equals <code>undefined</code>. <a href="#relational">Read the rule</a></p>
+                <div class="q__grade" role="group" aria-label="Did you get question 6 right?"><span class="q__grade-label">Did you get it?</span><button class="chip chip--yes" type="button" data-grade="yes" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Got it</button><button class="chip chip--no" type="button" data-grade="no" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg>Missed it</button></div>
+              </div></div></div>
+            </li>
+
+            <li class="q reveal">
+              <div class="q__head"><span class="q__num">07</span><p class="q__prompt">What do these two lines return?</p><span class="q__status" aria-hidden="true"></span></div>
+              <pre><code class="language-js">[NaN].includes(NaN)
+[NaN].indexOf(NaN)</code></pre>
+              <button class="btn btn--ghost btn--sm q__toggle" type="button" aria-expanded="false" aria-controls="a7"><span class="q__toggle-label">Show answer</span><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></button>
+              <div class="q__answer" id="a7"><div class="q__answer-inner"><div class="q__answer-body">
+                <p class="q__result"><span class="q__result-label">Answer</span><code>true</code> then <code>-1</code></p>
+                <p class="q__why"><code>includes</code> uses SameValueZero, where NaN equals NaN. <code>indexOf</code> uses <code>===</code>, where it never does. <a href="#samevaluezero">Read the rule</a></p>
+                <div class="q__grade" role="group" aria-label="Did you get question 7 right?"><span class="q__grade-label">Did you get it?</span><button class="chip chip--yes" type="button" data-grade="yes" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Got it</button><button class="chip chip--no" type="button" data-grade="no" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg>Missed it</button></div>
+              </div></div></div>
+            </li>
+
+            <li class="q reveal">
+              <div class="q__head"><span class="q__num">08</span><p class="q__prompt">What does this return?</p><span class="q__status" aria-hidden="true"></span></div>
+              <pre><code class="language-js">"b" + "a" + +"a" + "a"</code></pre>
+              <button class="btn btn--ghost btn--sm q__toggle" type="button" aria-expanded="false" aria-controls="a8"><span class="q__toggle-label">Show answer</span><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></button>
+              <div class="q__answer" id="a8"><div class="q__answer-inner"><div class="q__answer-body">
+                <p class="q__result"><span class="q__result-label">Answer</span><code>"baNaNa"</code></p>
+                <p class="q__why">The unary <code>+"a"</code> tries to turn <code>"a"</code> into a number and gets <code>NaN</code>, which is then concatenated as text. <a href="#plus">Read the rule</a></p>
+                <div class="q__grade" role="group" aria-label="Did you get question 8 right?"><span class="q__grade-label">Did you get it?</span><button class="chip chip--yes" type="button" data-grade="yes" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Got it</button><button class="chip chip--no" type="button" data-grade="no" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg>Missed it</button></div>
+              </div></div></div>
+            </li>
+
+            <li class="q reveal">
+              <div class="q__head"><span class="q__num">09</span><p class="q__prompt">What do these two lines return?</p><span class="q__status" aria-hidden="true"></span></div>
+              <pre><code class="language-js">0 === -0
+Object.is(0, -0)</code></pre>
+              <button class="btn btn--ghost btn--sm q__toggle" type="button" aria-expanded="false" aria-controls="a9"><span class="q__toggle-label">Show answer</span><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></button>
+              <div class="q__answer" id="a9"><div class="q__answer-inner"><div class="q__answer-body">
+                <p class="q__result"><span class="q__result-label">Answer</span><code>true</code> then <code>false</code></p>
+                <p class="q__why"><code>-0</code> is a real value in IEEE-754 floats. <code>===</code> treats it as equal to <code>0</code>; <code>Object.is</code> does not. <a href="#negative-zero">Read the rule</a></p>
+                <div class="q__grade" role="group" aria-label="Did you get question 9 right?"><span class="q__grade-label">Did you get it?</span><button class="chip chip--yes" type="button" data-grade="yes" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Got it</button><button class="chip chip--no" type="button" data-grade="no" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg>Missed it</button></div>
+              </div></div></div>
+            </li>
+
+            <li class="q reveal">
+              <div class="q__head"><span class="q__num">10</span><p class="q__prompt">What does this return?</p><span class="q__status" aria-hidden="true"></span></div>
+              <pre><code class="language-js">JSON.parse(JSON.stringify({ when: new Date(0), skip: undefined }))</code></pre>
+              <button class="btn btn--ghost btn--sm q__toggle" type="button" aria-expanded="false" aria-controls="a10"><span class="q__toggle-label">Show answer</span><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></button>
+              <div class="q__answer" id="a10"><div class="q__answer-inner"><div class="q__answer-body">
+                <p class="q__result"><span class="q__result-label">Answer</span><code>{ when: "1970-01-01T00:00:00.000Z" }</code></p>
+                <p class="q__why">The Date becomes a plain string and the <code>undefined</code> property is dropped. A JSON round-trip is a lossy deep copy. <a href="#copy">Read the rule</a></p>
+                <div class="q__grade" role="group" aria-label="Did you get question 10 right?"><span class="q__grade-label">Did you get it?</span><button class="chip chip--yes" type="button" data-grade="yes" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Got it</button><button class="chip chip--no" type="button" data-grade="no" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg>Missed it</button></div>
+              </div></div></div>
+            </li>
+          </ol>
+
+          <div class="scoreboard" aria-live="polite">
+            <div class="scoreboard__top">
+              <p class="scoreboard__score"><span data-score>0</span><small> / 10 correct</small></p>
+              <p class="scoreboard__meta"><span data-graded>0</span> of 10 graded</p>
+            </div>
+            <div class="meter" aria-hidden="true"><span class="meter__fill"></span></div>
+            <p class="scoreboard__verdict" data-verdict>Reveal each answer, then grade yourself honestly.</p>
+            <div class="scoreboard__actions">
+              <a class="btn btn--primary btn--sm" href="#types">Learn the rules <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+              <button class="btn btn--ghost btn--sm" type="button" data-reset><svg class="icon" aria-hidden="true"><use href="#i-reset"/></svg>Reset</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= 01 TYPES ================= -->
+        <section id="types" class="reveal" aria-labelledby="types-title">
+          <h2 id="types-title"><span class="sec-num">01</span>The 8 types and every <code>typeof</code> result</h2>
+          <p>JavaScript has exactly eight types. Seven are <strong>primitives</strong>: <code>undefined</code>, <code>null</code>, <code>boolean</code>, <code>number</code>, <code>bigint</code>, <code>string</code> and <code>symbol</code>. The eighth is <strong>object</strong>, and arrays, functions, dates, maps and regexes are all objects underneath.</p>
+          <p>One idea before anything else: <strong>values have types, variables don't.</strong> <code>let x = 1; x = "a";</code> is legal because the type lives on the value, not on the variable.</p>
+
+          <div class="table-wrap">
+            <table>
+              <caption>What typeof returns</caption>
+              <thead><tr><th scope="col">Value</th><th scope="col"><code>typeof</code></th><th scope="col">Note</th></tr></thead>
+              <tbody>
+                <tr><td><code>undefined</code></td><td><code>"undefined"</code></td><td></td></tr>
+                <tr><td><code>null</code></td><td><code>"object"</code></td><td>A bug from version one (see below)</td></tr>
+                <tr><td><code>true</code></td><td><code>"boolean"</code></td><td></td></tr>
+                <tr><td><code>42</code>, <code>NaN</code>, <code>Infinity</code></td><td><code>"number"</code></td><td>NaN is a number type</td></tr>
+                <tr><td><code>10n</code></td><td><code>"bigint"</code></td><td></td></tr>
+                <tr><td><code>"hi"</code></td><td><code>"string"</code></td><td></td></tr>
+                <tr><td><code>Symbol()</code></td><td><code>"symbol"</code></td><td></td></tr>
+                <tr><td><code>function () {}</code>, <code>class A {}</code></td><td><code>"function"</code></td><td>Callable object with an internal <code>[[Call]]</code>. A class is a function</td></tr>
+                <tr><td><code>[]</code>, <code>{}</code>, <code>new Date()</code>, <code>/x/</code>, <code>new Map()</code></td><td><code>"object"</code></td><td><code>typeof</code> can't tell these apart</td></tr>
+                <tr><td><code>new String("a")</code></td><td><code>"object"</code></td><td>A wrapper object, not a primitive</td></tr>
+                <tr><td>Undeclared variable</td><td><code>"undefined"</code></td><td>No ReferenceError</td></tr>
+                <tr><td><code>let</code> variable in its TDZ</td><td>ReferenceError</td><td><code>typeof x; let x = 1;</code> throws</td></tr>
+                <tr><td><code>typeof typeof 1</code></td><td><code>"string"</code></td><td><code>typeof</code> always returns a string</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <aside class="callout callout--trap">
+            <p class="callout__label"><svg class="icon" aria-hidden="true"><use href="#i-alert"/></svg>Trap</p>
+            <p>Why is <code>typeof null</code> equal to <code>"object"</code>? The first engine stored values with a small type tag, and objects had the tag <code>000</code>. <code>null</code> was the NULL pointer, all zeros, so it read as an object. A fix was proposed years later and rejected because it would break too much of the web.</p>
+          </aside>
+
+          <h3>Check types the reliable way</h3>
+<pre><code class="language-js">value === null                                // null
+Array.isArray(value)                          // array
+typeof value === "object" && value !== null   // non-null object (misses functions)
+Object.prototype.toString.call(value)         // "[object Array]", "[object Null]", "[object Date]", "[object Map]"</code></pre>
+          <p><code>Object.prototype.toString</code> reads the internal tag (or <code>Symbol.toStringTag</code>). It is the most reliable general-purpose type check in the language.</p>
+
+          <h3>Symbols in one paragraph</h3>
+          <p>Every <code>Symbol()</code> call creates a unique value, so <code>Symbol("a") !== Symbol("a")</code>. They make collision-free property keys and are hidden from <code>for...in</code>, <code>Object.keys</code> and <code>JSON.stringify</code>. <code>Symbol.for("a")</code> uses a global registry and returns the same symbol every time. Well-known symbols such as <code>Symbol.iterator</code>, <code>Symbol.toPrimitive</code> and <code>Symbol.toStringTag</code> let objects hook into language behaviour.</p>
+
+          <h3>Autoboxing: why <code>"abc".length</code> works</h3>
+          <p>Primitives have no properties. When you write <code>"abc".length</code>, the engine wraps the primitive in a temporary <code>String</code> object, looks the property up on <code>String.prototype</code>, then throws the wrapper away. That is why this happens:</p>
+<pre><code class="language-js">const s = "abc";
+s.foo = 1;   // sloppy mode: silently lost. strict mode: TypeError
+s.foo;       // undefined</code></pre>
+          <p><code>Number(x)</code> without <code>new</code> is a conversion and returns a primitive. <code>new Number(x)</code> creates a wrapper object that is always truthy. Never use it. <code>new Symbol()</code> and <code>new BigInt()</code> throw a TypeError.</p>
+        </section>
+
+        <!-- ================= 02 REFERENCES ================= -->
+        <section id="references" class="reveal" aria-labelledby="references-title">
+          <h2 id="references-title"><span class="sec-num">02</span>Primitives vs references: pass by sharing</h2>
+          <p><strong>Primitives</strong> are immutable and compared by value. <strong>Objects</strong> are mutable and compared by <strong>identity</strong>, meaning whether two references point at the same object in memory.</p>
+<pre><code class="language-js">"a" === "a"                          // true
+({}) === ({})                        // false: two different objects
+const a = {}; const b = a; a === b   // true: same reference</code></pre>
+          <p>Assignment always copies the value. For an object, the value <em>is</em> a reference, so the reference is copied and the object is not.</p>
+          <p>Function arguments work the same way. Arguments are passed by value, and an object's value is its reference. This is called <strong>call by sharing</strong>.</p>
+<pre><code class="language-js">function f(obj) {
+  obj.x = 1;       // mutates the shared object: visible outside
+  obj = { x: 2 };  // rebinds the local parameter only: NOT visible outside
+}
+const o = {};
+f(o);
+o.x;  // 1</code></pre>
+
+          <aside class="callout callout--tip">
+            <p class="callout__label"><svg class="icon" aria-hidden="true"><use href="#i-message"/></svg>Interview answer</p>
+            <p>"JavaScript is always pass by value. For objects, the value being passed is a reference, so mutations are shared but reassignment is not." That is why you can't write a <code>swap(a, b)</code> function that swaps the caller's variables.</p>
+          </aside>
+
+          <h3>Primitives can't be mutated</h3>
+<pre><code class="language-js">let s = "cat";
+s[0] = "b";        // ignored (strict mode: TypeError)
+s.toUpperCase();   // returns a NEW string; s is still "cat"</code></pre>
+          <p><strong><code>const</code> is not immutability.</strong> It locks the binding, not the value: <code>const o = {}; o.x = 1;</code> is fine. <code>Object.freeze</code> is shallow, so nested objects stay mutable.</p>
+        </section>
+
+        <!-- ================= 03 NUMBERS ================= -->
+        <section id="numbers" class="reveal" aria-labelledby="numbers-title">
+          <h2 id="numbers-title"><span class="sec-num">03</span>Number internals: why 0.1 + 0.2 isn't 0.3</h2>
+
+          <h3 id="float">Every number is a 64-bit float</h3>
+          <p>JavaScript has no separate integer type. Every <code>number</code> is an IEEE-754 double: <strong>1 sign bit, 11 exponent bits and 52 fraction bits</strong>. An implicit leading 1 gives 53 bits of precision.</p>
+          <p>0.1 in binary repeats forever, the same way 1/3 is 0.333… in decimal, so it is stored rounded. Add two rounded values and you get <code>0.30000000000000004</code>. Fix it by comparing with a tolerance, by working in integers (money in paise or cents), or by rounding only for display.</p>
+<pre><code class="language-js">(1.005).toFixed(2)   // "1.00": 1.005 is really stored as 1.00499999…</code></pre>
+
+          <h3 id="epsilon"><code>Number.EPSILON</code> is relative</h3>
+          <p><code>Number.EPSILON</code> is <code>2^-52</code>, about <code>2.22e-16</code>: the gap between <code>1</code> and the next representable double. That gap grows with the size of the number, so scale it for anything big:</p>
+<pre><code class="language-js">Math.abs(a - b) &lt;= Number.EPSILON * Math.max(Math.abs(a), Math.abs(b))</code></pre>
+
+          <h3 id="safe-integers">Safe integers and the 2<sup>53</sup> cliff</h3>
+          <p><code>Number.MAX_SAFE_INTEGER</code> is <code>2^53 - 1 = 9007199254740991</code>. Above it, not every integer can be represented:</p>
+<pre><code class="language-js">2**53 === 2**53 + 1          // true
+Number.isSafeInteger(2**53)  // false</code></pre>
+          <aside class="callout callout--rn">
+            <p class="callout__label"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>Real-world bug</p>
+            <p>A backend sends a 64-bit database ID as a JSON number. <code>JSON.parse</code> silently rounds it and your app requests the wrong record. Big IDs should travel as <strong>strings</strong>, which is why Twitter's API has an <code>id_str</code> field.</p>
+          </aside>
+          <p><code>Number.MAX_VALUE</code> is about <code>1.79e308</code>; anything bigger becomes <code>Infinity</code>. And a classic trap: <code>Number.MIN_VALUE</code> (<code>5e-324</code>) is the smallest <em>positive</em> number, not the most negative one.</p>
+
+          <h3 id="nan">NaN: the value that isn't equal to itself</h3>
+          <p><code>typeof NaN</code> is <code>"number"</code>. You get it from <code>0 / 0</code>, <code>Number("abc")</code>, <code>undefined + 1</code>, <code>Math.sqrt(-1)</code> and <code>Infinity - Infinity</code>. It is the only value where <code>x === x</code> is false.</p>
+<pre><code class="language-js">Number.isNaN(x)     // good: no coercion
+Object.is(x, NaN)   // good
+x !== x             // good: the old trick
+isNaN(x)            // trap: coerces first, so isNaN("abc") is true and isNaN("") is false</code></pre>
+          <p>The same split exists for <code>isFinite</code> and <code>Number.isFinite</code>: the global version coerces, the <code>Number.</code> version doesn't.</p>
+
+          <h3 id="negative-zero">-0 is real</h3>
+          <p>Floats have a sign bit, so <code>-0</code> exists.</p>
+<pre><code class="language-js">0 === -0             // true
+Object.is(0, -0)     // false
+1 / -0               // -Infinity: one way to detect it
+Math.round(-0.4)     // -0
+0 * -1               // -0
+String(-0)           // "0": hides it
+JSON.stringify(-0)   // "0"</code></pre>
+          <p>It is useful when the sign of a value that reached zero still matters, such as the direction of a gesture or an animation's velocity.</p>
+
+          <h3>Bitwise operators work on 32-bit integers</h3>
+          <p><code>x | 0</code> and <code>~~x</code> truncate to a 32-bit signed integer, so <code>2**31 | 0</code> is <code>-2147483648</code>. Don't use them on large numbers.</p>
+
+          <h3 id="parseint"><code>parseInt</code> vs <code>Number</code></h3>
+<pre><code class="language-js">Number("12px")        // NaN: the whole string must be numeric
+parseInt("12px")      // 12: parses until the first invalid character
+Number("")            // 0   (trap)
+parseInt("")          // NaN
+parseInt(0.0000005)   // 5: String(5e-7) is "5e-7", which parses as "5"
+
+["1", "2", "3"].map(parseInt)   // [1, NaN, NaN]
+// map calls parseInt(value, index):
+// parseInt("2", 1) is NaN because radix 1 is invalid
+// parseInt("3", 2) is NaN because "3" is not a binary digit</code></pre>
+          <p>Always pass the radix: <code>parseInt(s, 10)</code>.</p>
+
+          <h3 id="bigint">BigInt</h3>
+          <p>Arbitrary-precision <strong>integers</strong>, written <code>10n</code> or <code>BigInt(10)</code>. Use them for 64-bit IDs, cryptography and nanosecond timestamps.</p>
+<pre><code class="language-js">1n + 1               // TypeError: no implicit mixing with Number
+1n + BigInt(1)       // 2n
+5n / 2n              // 2n (truncates)
++1n                  // TypeError: unary + would lose precision
+Number(10n)          // 10 (explicit conversion is fine)
+BigInt(1.5)          // RangeError
+1n == 1              // true
+1n === 1             // false: different types
+1n &lt; 2               // true: comparisons across types are allowed
+JSON.stringify(1n)   // TypeError
+Math.max(1n)         // TypeError: Math doesn't support BigInt</code></pre>
+        </section>
+
+        <!-- ================= 04 ABSTRACT OPS ================= -->
+        <section id="abstract-ops" class="reveal" aria-labelledby="abstract-ops-title">
+          <h2 id="abstract-ops-title"><span class="sec-num">04</span>The four abstract operations behind every coercion</h2>
+          <p>The spec defines a handful of internal algorithms, and every implicit conversion runs through them. Learn these four and any coercion puzzle becomes mechanical.</p>
+
+          <h3 id="toprimitive">ToPrimitive(input, hint)</h3>
+          <p>Converts an object to a primitive. The hint is <code>"string"</code>, <code>"number"</code> or <code>"default"</code>.</p>
+          <ol class="steps">
+            <li>If the object has a <code>[Symbol.toPrimitive]</code> method, call it with the hint. It must return a primitive, or a TypeError is thrown.</li>
+            <li>Otherwise run <strong>OrdinaryToPrimitive</strong>. With hint <code>"string"</code>, try <code>toString()</code> then <code>valueOf()</code>. With <code>"number"</code> or <code>"default"</code>, try <code>valueOf()</code> then <code>toString()</code>.</li>
+            <li>The first method that returns a primitive wins. If neither does, a TypeError is thrown.</li>
+          </ol>
+
+          <div class="table-wrap">
+            <table>
+              <caption>Which hint is used where</caption>
+              <thead><tr><th scope="col">Context</th><th scope="col">Hint</th></tr></thead>
+              <tbody>
+                <tr><td><code>String(obj)</code>, <code>`${obj}`</code>, property key <code>o[obj]</code></td><td><code>"string"</code></td></tr>
+                <tr><td><code>Number(obj)</code>, <code>+obj</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>&lt;</code>, <code>&gt;</code></td><td><code>"number"</code></td></tr>
+                <tr><td>Binary <code>+</code>, <code>==</code> against a primitive</td><td><code>"default"</code></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>A plain object's <code>valueOf()</code> returns the object itself, which isn't a primitive, so it falls through to <code>toString()</code> and gives <code>"[object Object]"</code>. An array's <code>toString()</code> is <code>join(",")</code>.</p>
+
+          <aside class="callout callout--trap">
+            <p class="callout__label"><svg class="icon" aria-hidden="true"><use href="#i-alert"/></svg>The Date exception</p>
+            <p>Date treats the <code>"default"</code> hint as <code>"string"</code>, so <code>new Date(0) + 1</code> concatenates text while <code>new Date(0) - 1</code> gives <code>-1</code>.</p>
+          </aside>
+
+          <h3>ToNumber</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th scope="col">Input</th><th scope="col">Result</th></tr></thead>
+              <tbody>
+                <tr><td><code>undefined</code></td><td><code>NaN</code></td></tr>
+                <tr><td><code>null</code></td><td><code>0</code></td></tr>
+                <tr><td><code>true</code> / <code>false</code></td><td><code>1</code> / <code>0</code></td></tr>
+                <tr><td><code>""</code>, <code>"   "</code>, <code>"\n"</code></td><td><code>0</code>. Whitespace is trimmed and an empty string is 0</td></tr>
+                <tr><td><code>" 42 "</code></td><td><code>42</code></td></tr>
+                <tr><td><code>"0x1A"</code>, <code>"0b11"</code>, <code>"1e3"</code></td><td><code>26</code>, <code>3</code>, <code>1000</code></td></tr>
+                <tr><td><code>"12px"</code>, <code>"1_000"</code></td><td><code>NaN</code></td></tr>
+                <tr><td>Symbol</td><td>TypeError</td></tr>
+                <tr><td>BigInt</td><td>Implicit: TypeError. <code>Number(10n)</code>: <code>10</code></td></tr>
+                <tr><td>Object</td><td>ToPrimitive with hint <code>"number"</code>, then ToNumber</td></tr>
+              </tbody>
+            </table>
+          </div>
+<pre><code class="language-js">+[]            // [] → "" → 0
++[5]           // [5] → "5" → 5
++[1, 2]        // "1,2" → NaN
++{}            // "[object Object]" → NaN
++new Date(0)   // 0 (the timestamp)</code></pre>
+
+          <h3>ToString</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th scope="col">Input</th><th scope="col">Result</th></tr></thead>
+              <tbody>
+                <tr><td><code>undefined</code>, <code>null</code></td><td><code>"undefined"</code>, <code>"null"</code></td></tr>
+                <tr><td><code>-0</code></td><td><code>"0"</code></td></tr>
+                <tr><td><code>1e21</code></td><td><code>"1e+21"</code></td></tr>
+                <tr><td><code>10n</code></td><td><code>"10"</code></td></tr>
+                <tr><td>Symbol</td><td><code>String(sym)</code> works. Implicit conversion (<code>sym + ""</code>, <code>`${sym}`</code>) throws a TypeError</td></tr>
+                <tr><td>Object</td><td>ToPrimitive with hint <code>"string"</code>, then ToString</td></tr>
+              </tbody>
+            </table>
+          </div>
+<pre><code class="language-js">String([])           // ""
+String([null])       // ""   (join treats null and undefined as "")
+String([1, [2, 3]])  // "1,2,3"
+String({})           // "[object Object]"
+String(null)         // "null", but null.toString() throws a TypeError</code></pre>
+
+          <h3>ToBoolean</h3>
+          <p>A pure lookup: no ToPrimitive, no method calls. The eight falsy values become <code>false</code> and everything else becomes <code>true</code>. <strong>Every object is truthy</strong>, including an empty array and <code>new Boolean(false)</code>.</p>
+        </section>
+
+        <!-- ================= 05 FALSY ================= -->
+        <section id="falsy" class="reveal" aria-labelledby="falsy-title">
+          <h2 id="falsy-title"><span class="sec-num">05</span>The 8 falsy values</h2>
+          <p>Memorise this list. Everything not on it is truthy.</p>
+          <ul class="pills" aria-label="Falsy values">
+            <li><code>false</code></li><li><code>0</code></li><li><code>-0</code></li><li><code>0n</code></li><li><code>""</code></li><li><code>null</code></li><li><code>undefined</code></li><li><code>NaN</code></li>
+          </ul>
+          <p>There is a ninth, exotic one: <code>document.all</code>, a legacy browser object that is deliberately falsy. Trivia only.</p>
+          <p>Truthy values that surprise people:</p>
+          <ul class="pills pills--muted" aria-label="Surprisingly truthy values">
+            <li><code>"0"</code></li><li><code>"false"</code></li><li><code>" "</code></li><li><code>[]</code></li><li><code>{}</code></li><li><code>function () {}</code></li><li><code>new Boolean(false)</code></li><li><code>-1</code></li><li><code>Infinity</code></li>
+          </ul>
+
+          <h3><code>&amp;&amp;</code> and <code>||</code> return an operand, not a boolean</h3>
+<pre><code class="language-js">"a" || "b"   // "a"
+0 || "b"     // "b"
+"a" && "b"   // "b"
+0 && "b"     // 0</code></pre>
+
+          <h3><code>||</code> vs <code>??</code></h3>
+<pre><code class="language-js">const limit = count || 10;   // bug: when count is 0, limit becomes 10
+const limit = count ?? 10;   // only null and undefined fall back</code></pre>
+
+          <aside class="callout callout--rn">
+            <p class="callout__label"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>React Native crash</p>
+            <p>When the list is empty, the left side evaluates to <code>0</code> and React Native tries to render it outside a <code>&lt;Text&gt;</code> component.</p>
+<pre><code class="language-jsx">{items.length &amp;&amp; &lt;List /&gt;}
+// length 0 → renders 0 → "Text strings must be rendered within a &lt;Text&gt; component"
+
+{items.length &gt; 0 &amp;&amp; &lt;List /&gt;}   // safe</code></pre>
+          </aside>
+        </section>
+
+        <!-- ================= 06 EQUALITY ================= -->
+        <section id="equality" class="reveal" aria-labelledby="equality-title">
+          <h2 id="equality-title"><span class="sec-num">06</span><code>==</code> vs <code>===</code> vs <code>Object.is</code> vs SameValueZero</h2>
+
+          <h3><code>===</code> strict equality</h3>
+          <p>Different types give <code>false</code>. Same types are compared directly, with two number quirks: <code>NaN !== NaN</code> and <code>+0 === -0</code>. Objects compare by reference.</p>
+
+          <h3 id="loose-equality">The <code>==</code> algorithm (know it cold)</h3>
+          <p>For <code>x == y</code>, the spec's IsLooselyEqual runs these steps:</p>
+          <ol class="steps">
+            <li><strong>Same type:</strong> use <code>===</code>.</li>
+            <li><strong><code>null == undefined</code></strong> is <code>true</code>. Those two loosely equal only each other and themselves.</li>
+            <li><strong>Number vs String:</strong> convert the string with ToNumber, then compare.</li>
+            <li><strong>BigInt vs String:</strong> convert the string to a BigInt. An invalid string gives <code>false</code>.</li>
+            <li><strong>Boolean vs anything:</strong> convert the boolean to a number <em>first</em>, then start again.</li>
+            <li><strong>Object vs primitive:</strong> run ToPrimitive on the object with hint <code>"default"</code>, then start again.</li>
+            <li><strong>BigInt vs Number:</strong> compare the mathematical values.</li>
+            <li>Anything else is <code>false</code>.</li>
+          </ol>
+          <p>Rule 5 causes most of the traps:</p>
+<pre><code class="language-js">"true" == true   // false: true → 1, "true" → NaN, and NaN == 1 is false
+"1" == true      // true:  true → 1, "1" → 1</code></pre>
+
+          <h3>Walkthrough: <code>[] == ![]</code></h3>
+<pre><code class="language-text">![]            → false        [] is truthy, so its negation is false
+[] == false    → [] == 0      rule 5: the boolean becomes a number
+[] == 0        → "" == 0      rule 6: ToPrimitive([]) is ""
+"" == 0        → 0 == 0       rule 3: ToNumber("") is 0
+               → true</code></pre>
+<pre><code class="language-js">null == 0            // false: rule 2, null only equals undefined
+null == false        // false: false → 0, then null == 0 is false
+undefined == 0       // false
+[0] == false         // true:  false → 0, [0] → "0" → 0
+if ([0]) {}          // runs! Truthiness and == are different questions
+[1, 2, 3] == "1,2,3" // true
+NaN == NaN           // false</code></pre>
+
+          <h3 id="relational">Relational operators play by different rules</h3>
+          <p><code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code> and <code>&gt;=</code> run ToPrimitive with hint <code>"number"</code> on both sides. If <strong>both</strong> results are strings they compare character codes; otherwise both sides go through ToNumber.</p>
+<pre><code class="language-js">null >= 0        // true:  null → 0, and 0 >= 0
+null > 0         // false
+null == 0        // false: == has the special null rule; relational operators don't
+"10" &lt; "9"       // true:  both strings, so "1" &lt; "9"
+"10" &lt; 9         // false: numeric comparison
+undefined >= 0   // false: undefined → NaN, and every NaN comparison is false</code></pre>
+
+          <h3 id="object-is"><code>Object.is</code> (SameValue)</h3>
+          <p>Identical to <code>===</code> except for two cases: <code>Object.is(NaN, NaN)</code> is <code>true</code> and <code>Object.is(0, -0)</code> is <code>false</code>.</p>
+          <aside class="callout callout--rn">
+            <p class="callout__label"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>Why React developers care</p>
+            <p>React uses <code>Object.is</code> for the <code>useState</code> bail-out, for <code>useEffect</code> and <code>useMemo</code> dependencies, and for <code>React.memo</code>'s shallow compare. Setting state to the same object skips the re-render; setting it to <code>{...obj}</code> creates a new reference and re-renders.</p>
+          </aside>
+
+          <h3 id="samevaluezero">SameValueZero</h3>
+          <p>Like <code>Object.is</code>, except <code>+0</code> and <code>-0</code> are equal. <code>Array.prototype.includes</code>, <code>Map</code> keys and <code>Set</code> values use it.</p>
+<pre><code class="language-js">[NaN].includes(NaN)           // true (SameValueZero)
+[NaN].indexOf(NaN)            // -1   (===)
+new Map([[-0, "a"]]).get(0)   // "a"</code></pre>
+
+          <div class="table-wrap">
+            <table class="wide">
+              <caption>The four equality algorithms</caption>
+              <thead><tr><th scope="col">Algorithm</th><th scope="col">NaN vs NaN</th><th scope="col">+0 vs -0</th><th scope="col">Coerces?</th><th scope="col">Used by</th></tr></thead>
+              <tbody>
+                <tr><td><code>==</code></td><td>false</td><td>true</td><td>Yes</td><td></td></tr>
+                <tr><td><code>===</code></td><td>false</td><td>true</td><td>No</td><td><code>indexOf</code>, <code>switch</code></td></tr>
+                <tr><td><code>Object.is</code></td><td><strong>true</strong></td><td><strong>false</strong></td><td>No</td><td>React</td></tr>
+                <tr><td>SameValueZero</td><td><strong>true</strong></td><td>true</td><td>No</td><td><code>includes</code>, Map, Set</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <aside class="callout callout--tip">
+            <p class="callout__label"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg>When == is fine</p>
+            <p><code>x == null</code> checks for <code>null</code> <em>or</em> <code>undefined</code> in one go, and it's a well-known idiom. Use <code>===</code> everywhere else.</p>
+          </aside>
+        </section>
+
+        <!-- ================= 07 PLUS ================= -->
+        <section id="plus" class="reveal" aria-labelledby="plus-title">
+          <h2 id="plus-title"><span class="sec-num">07</span>The <code>+</code> operator: add or concatenate?</h2>
+          <p>Binary <code>a + b</code> follows three steps:</p>
+          <ol class="steps">
+            <li>Run ToPrimitive on both sides with hint <code>"default"</code>.</li>
+            <li>If <strong>either</strong> result is a string, convert both to strings and concatenate.</li>
+            <li>Otherwise convert both to numbers and add. Mixing BigInt and Number throws a TypeError.</li>
+          </ol>
+          <p>The other arithmetic operators (<code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>, <code>**</code>) always convert to numbers. Unary <code>+</code> is ToNumber.</p>
+<pre><code class="language-js">1 + "2"                  // "12"
+"3" - 1                  // 2
+"3" * "4"                // 12
+1 + 2 + "3"              // "33": left to right, 3 + "3"
+"1" + 2 + 3              // "123"
+"1" + 1 - 1              // 10: "11" - 1
+true + true              // 2
+null + 1                 // 1: null → 0
+undefined + 1            // NaN
+"5" + null               // "5null"
+[] + []                  // "": "" + ""
+[] + {}                  // "[object Object]"
+[1, 2] + [3]             // "1,23"
+"b" + "a" + +"a" + "a"   // "baNaNa": +"a" is NaN
+1 + Symbol()             // TypeError</code></pre>
+          <aside class="callout callout--trap">
+            <p class="callout__label"><svg class="icon" aria-hidden="true"><use href="#i-alert"/></svg>{} + []</p>
+            <p>At the start of a statement, <code>{}</code> parses as an empty block, so <code>{} + []</code> evaluates <code>+[]</code> and gives <code>0</code>. As an expression, <code>({} + [])</code> gives <code>"[object Object]"</code>. Chrome's console wraps input in parentheses, which is why it shows the string.</p>
+          </aside>
+          <p><strong>Template literals vs <code>+</code>:</strong> <code>`${obj}`</code> uses hint <code>"string"</code>, while <code>"" + obj</code> uses hint <code>"default"</code>. With a custom <code>Symbol.toPrimitive</code>, the two can give different results.</p>
+        </section>
+
+        <!-- ================= 08 COPY ================= -->
+        <section id="copy" class="reveal" aria-labelledby="copy-title">
+          <h2 id="copy-title"><span class="sec-num">08</span>Shallow copy, deep copy and <code>structuredClone</code></h2>
+          <p>Assignment never copies: after <code>const b = a</code>, both names point at the same object.</p>
+
+          <h3>Shallow copy</h3>
+          <p><code>{...obj}</code>, <code>Object.assign({}, obj)</code>, <code>[...arr]</code>, <code>arr.slice()</code> and <code>Array.from(arr)</code> create a new top-level container. <strong>Nested objects are still shared.</strong></p>
+<pre><code class="language-js">const a = { n: 1, inner: { x: 1 } };
+const b = { ...a };
+b.n = 2;          // a.n is still 1
+b.inner.x = 99;   // a.inner.x is now 99: shared</code></pre>
+          <p>Spread copies own enumerable properties, including symbol keys. It drops the prototype, so a class instance becomes a plain object, and it invokes getters, so you copy the value rather than the getter.</p>
+
+          <h3>Deep copy with a JSON round-trip</h3>
+          <p><code>JSON.parse(JSON.stringify(obj))</code> works for plain data but is <strong>lossy</strong>:</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th scope="col">Input</th><th scope="col">After the round-trip</th></tr></thead>
+              <tbody>
+                <tr><td><code>undefined</code>, function or symbol as an object property</td><td>Key is dropped</td></tr>
+                <tr><td>The same values inside an array</td><td><code>null</code></td></tr>
+                <tr><td><code>Date</code></td><td>ISO string, no longer a Date</td></tr>
+                <tr><td><code>Map</code>, <code>Set</code>, <code>RegExp</code></td><td><code>{}</code></td></tr>
+                <tr><td><code>NaN</code>, <code>Infinity</code></td><td><code>null</code></td></tr>
+                <tr><td><code>-0</code></td><td><code>0</code></td></tr>
+                <tr><td>BigInt</td><td>TypeError</td></tr>
+                <tr><td>Circular reference</td><td>TypeError</td></tr>
+                <tr><td>Class instance</td><td>Plain object, prototype lost</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Deep copy with <code>structuredClone</code></h3>
+          <ul>
+            <li><strong>Handles</strong> circular references, <code>Date</code>, <code>RegExp</code>, <code>Map</code>, <code>Set</code>, ArrayBuffers and typed arrays, BigInt and Error types.</li>
+            <li><strong>Throws</strong> a <code>DataCloneError</code> on functions, symbols and DOM nodes.</li>
+            <li><strong>Still loses</strong> the prototype (class instances become plain objects), getters and setters (the value is copied) and property descriptors.</li>
+          </ul>
+          <aside class="callout callout--rn">
+            <p class="callout__label"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>React Native</p>
+            <p>Don't assume <code>structuredClone</code> exists in your JavaScript runtime. Check it before relying on it, and fall back to a library such as lodash's <code>cloneDeep</code>.</p>
+          </aside>
+
+          <h3>In React state you rarely deep copy</h3>
+          <p>Copy only the path you change. This is called structural sharing:</p>
+<pre><code class="language-js">setUser(u => ({ ...u, address: { ...u.address, city: "Pune" } }));</code></pre>
+          <p>Unchanged branches keep their references, so memoised children skip re-rendering. Redux Toolkit does this for you through Immer.</p>
+        </section>
+
+        <!-- ================= CHEATSHEET ================= -->
+        <section id="cheatsheet" class="reveal" aria-labelledby="cheatsheet-title">
+          <h2 id="cheatsheet-title"><span class="sec-num">Recap</span>Interview cheat sheet</h2>
+          <p>One-line answers to the questions that come up most.</p>
+          <dl class="qa">
+            <div><dt>What is <code>typeof null</code>?</dt><dd><code>"object"</code>. A type-tag bug from version one that was never fixed because fixing it would break the web.</dd></div>
+            <div><dt>What is <code>typeof NaN</code>?</dt><dd><code>"number"</code>.</dd></div>
+            <div><dt>What is <code>typeof class {}</code>?</dt><dd><code>"function"</code>.</dd></div>
+            <div><dt>null vs undefined?</dt><dd><code>undefined</code> is the engine's default: unassigned variables, missing properties, functions with no return. <code>null</code> is an intentional "empty" set by a developer. <code>Number(null)</code> is 0 and <code>Number(undefined)</code> is NaN. JSON keeps null and drops undefined properties. <strong>Default parameters trigger only on undefined, not null.</strong></dd></div>
+            <div><dt>Is JavaScript pass by reference?</dt><dd>No. It is pass by value, and for objects the value is a reference (call by sharing).</dd></div>
+            <div><dt>Why is <code>0.1 + 0.2 !== 0.3</code>?</dt><dd>IEEE-754 binary floats can't represent 0.1 exactly. Compare with an epsilon or work in integers.</dd></div>
+            <div><dt>What is the max safe integer?</dt><dd><code>2^53 - 1</code>, because a double has 53 bits of precision.</dd></div>
+            <div><dt>How do you check for NaN?</dt><dd><code>Number.isNaN</code>, not the global <code>isNaN</code>, which coerces.</dd></div>
+            <div><dt><code>==</code> vs <code>===</code>?</dt><dd><code>==</code> coerces through the IsLooselyEqual algorithm; <code>===</code> never coerces. Use <code>===</code>, except for <code>x == null</code>.</dd></div>
+            <div><dt><code>Object.is</code> vs <code>===</code>?</dt><dd>They differ only on NaN (equal under <code>Object.is</code>) and ±0 (not equal under <code>Object.is</code>). React uses <code>Object.is</code>.</dd></div>
+            <div><dt>Why is <code>[] == ![]</code> true?</dt><dd>Walk the four steps in section 06: boolean to number, array to <code>""</code>, string to number, then <code>0 == 0</code>.</dd></div>
+            <div><dt>What is <code>[] + {}</code>?</dt><dd><code>"[object Object]"</code>.</dd></div>
+            <div><dt>Why does <code>["1","2","3"].map(parseInt)</code> give <code>[1, NaN, NaN]</code>?</dt><dd><code>map</code> passes the index, which <code>parseInt</code> reads as the radix.</dd></div>
+            <div><dt>Why is <code>null &gt;= 0</code> true but <code>null == 0</code> false?</dt><dd>Relational operators use ToNumber, which turns null into 0. <code>==</code> has its own null rule.</dd></div>
+            <div><dt>List the falsy values.</dt><dd>Eight of them: <code>false</code>, <code>0</code>, <code>-0</code>, <code>0n</code>, <code>""</code>, <code>null</code>, <code>undefined</code>, <code>NaN</code>.</dd></div>
+            <div><dt>How does an object become a primitive?</dt><dd><code>Symbol.toPrimitive</code> if present; otherwise <code>valueOf</code> and <code>toString</code>, in an order set by the hint.</dd></div>
+            <div><dt>How do you deep clone?</dt><dd><code>structuredClone</code>. A JSON round-trip loses Dates, Maps, undefined and functions, and throws on circular references and BigInt.</dd></div>
+            <div><dt>What is autoboxing?</dt><dd>A primitive is temporarily wrapped in its wrapper object so a property can be looked up.</dd></div>
+            <div><dt>Is <code>typeof x === "object"</code> enough to detect objects?</dt><dd>No. <code>null</code> passes the check and functions fail it.</dd></div>
+          </dl>
+        </section>
+
+        <!-- ================= PRACTICE ================= -->
+        <section id="practice" class="reveal" aria-labelledby="practice-title">
+          <h2 id="practice-title"><span class="sec-num">Your turn</span>Practice: prove it</h2>
+          <p>Reading is not knowing. Write these three from scratch, without looking anything up.</p>
+          <ol class="steps">
+            <li><strong><code>getType(value)</code></strong> returning <code>"null"</code>, <code>"array"</code>, <code>"date"</code>, <code>"map"</code>, <code>"object"</code> and so on. Hint: <code>Object.prototype.toString.call(v).slice(8, -1).toLowerCase()</code>. Test it on <code>null</code>, <code>[]</code>, <code>new Date()</code>, <code>new Map()</code>, <code>NaN</code>, <code>class A {}</code> and an object with a custom <code>Symbol.toStringTag</code>.</li>
+            <li><strong><code>nearlyEqual(a, b, epsilon)</code></strong>. Test <code>0.1 + 0.2</code> against <code>0.3</code>, then try big numbers like <code>1e20</code>, plus <code>NaN</code> and <code>Infinity</code>. Where does a fixed absolute epsilon break?</li>
+            <li><strong>A price object with <code>Symbol.toPrimitive</code></strong> so that <code>`${price}`</code> gives <code>"₹499"</code> and <code>price * 2</code> gives <code>998</code>. Then predict <code>price + 1</code> and explain the result using the <code>"default"</code> hint.</li>
+          </ol>
+
+          <div class="cta-box">
+            <p class="cta-box__title">Scored under 8 the first time?</p>
+            <p>Now that you know the rules, take the challenge again. Every answer should feel obvious.</p>
+            <a class="btn btn--primary" href="#challenge" data-retake>Retake the challenge <svg class="icon" aria-hidden="true"><use href="#i-arrow-up"/></svg></a>
+          </div>
+        </section>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer site-footer--dock">
+      <p>Written by Mitansh · <time datetime="2026-10-08">October 8, 2026</time></p>
+      <p>Plain HTML, CSS and a little JavaScript.</p>
+    </footer>
+  </div>
+
+  <div class="reading-dock">
+    <div class="reading-control">
+      <nav class="reading-menu" id="reading-menu" aria-label="Jump to section"></nav>
+      <button class="reading-pill" type="button" aria-expanded="false" aria-controls="reading-menu">
+        <span class="reading-dot" aria-hidden="true"></span>
+        <span class="reading-label">Are You a JS Pro?</span>
+        <svg class="ring" viewBox="0 0 20 20" aria-hidden="true"><circle class="ring__track" cx="10" cy="10" r="8"/><circle class="ring__fill" cx="10" cy="10" r="8"/></svg>
+      </button>
+    </div>
+  </div>
+</body>
+</html>
